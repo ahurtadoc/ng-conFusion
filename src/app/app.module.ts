@@ -14,6 +14,7 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 import { AppComponent } from './app.component';
@@ -60,6 +61,7 @@ import {MatSlideToggleModule} from "@angular/material/slide-toggle";
       MatCheckboxModule,
       MatSelectModule,
       MatSlideToggleModule,
+      MatProgressSpinnerModule,
       FormsModule,
       ReactiveFormsModule
     ],
