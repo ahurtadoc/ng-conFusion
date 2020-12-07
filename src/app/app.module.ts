@@ -32,6 +32,7 @@ import {LeaderService} from "./services/leader.service";
 import { LoginComponent } from './login/login.component';
 import {MatSelectModule} from "@angular/material/select";
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
+import {MatSliderModule} from "@angular/material/slider";
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import {MatSlideToggleModule} from "@angular/material/slide-toggle";
       MatSelectModule,
       MatSlideToggleModule,
       MatProgressSpinnerModule,
+      MatSliderModule,
       FormsModule,
       ReactiveFormsModule
     ],

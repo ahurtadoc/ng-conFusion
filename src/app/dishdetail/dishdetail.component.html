@@ -6,8 +6,8 @@
      fxLayoutGap="10px"
      fxLayoutGap.xs="0">
 
-  <div fxFlex="40">
-    <mat-card *ngIf="dish">
+  <div fxFlex="40" *ngIf="dish">
+    <mat-card >
       <mat-card-header>
         <mat-card-title>
           <h3>{{dish.name | uppercase}}</h3>
@@ -18,9 +18,15 @@
         <p>{{dish.description}}</p>
       </mat-card-content>
       <mat-card-actions>
+        <button mat-button [routerLink]="['/dishdetail',prev]">
+          <span class="fa fa-chevron-left fa-lg"></span>
+        </button>
         <button mat-button (click)="goBack()">Back</button>
         <button mat-button>Like</button>
         <button mat-button>Share</button>
+        <button mat-button [routerLink]="['/dishdetail',next]">
+          <span class="fa fa-chevron-right fa-lg"></span>
+        </button>
       </mat-card-actions>
     </mat-card>
 
@@ -38,6 +44,29 @@
         <p matLine>-- {{comment.author}} {{comment.date | date}}</p>
       </mat-list-item>
     </mat-list>
+    <mat-list *ngIf="!commentForm.invalid">
+      <mat-list-item>
+        <p matLine>{{commentForm.value.comment}}</p>
+        <p matLine>{{commentForm.value.rating}} Stars</p>
+        <p matLine>-- {{commentForm.value.author}}</p>
+      </mat-list-item>
+    </mat-list>
+
+    <form (ngSubmit)="onSubmit()" novalidate #cform='ngForm' [formGroup]="commentForm"  fxLayout="column">
+      <mat-form-field>
+        <input type="text" matInput required formControlName="author" placeholder="Name">
+        <mat-error *ngIf="formErrors.author">{{formErrors.author}}</mat-error>
+      </mat-form-field>
+      <mat-slider thumbLabel tickInterval="1" min="1" max="5" fxFlexAlign="baseline" formControlName="rating">
+      </mat-slider>
+      <mat-form-field>
+        <textarea matInput rows="10" placeholder="Your comment" required formControlName="comment"> </textarea>
+        <mat-error *ngIf="formErrors.comment">{{formErrors.comment}}</mat-error>
+      </mat-form-field>
+      <button type="submit" mat-flat-button color="primary" fxFlexAlign="baseline" [disabled]="commentForm.invalid">
+        Submit
+      </button>
+    </form>
   </div>
 
   <div fxFlex [hidden]="dish">
