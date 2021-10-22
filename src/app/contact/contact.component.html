@@ -36,11 +36,17 @@
     </div>
   </div>
 
-  <div fxFlex fxFlexOffset="20px" class="form-size">
-    <h3>Send us your Feedback</h3>
-    <p>{{ feedbackForm.value | json }} {{ feedbackForm.status | json }}</p>
 
-    <form action="" novalidate  #fform="ngForm" [formGroup]="feedbackForm">
+  <div fxFlex fxFlexOffset="20px" class="form-size" >
+    <h3>Send us your Feedback</h3>
+<!--    <p>{{ feedbackForm.value | json }} {{ feedbackForm.status | json }}</p>-->
+
+  <div *ngIf="spinnerState" [@expand]>
+    <h4>  Submitting form</h4>
+    <mat-spinner ></mat-spinner>
+  </div>
+
+    <form (ngSubmit)="onSubmit()" novalidate  #fform="ngForm" [formGroup]="feedbackForm" *ngIf="formState" [@expand]>
       <p>
         <mat-form-field class="half-width">
           <input matInput type="text" formControlName="firstname"
@@ -96,6 +102,19 @@
       </button>
 
     </form>
+
+    <div *ngIf="confirmState" [@expand]>
+      <h4>Your Submission</h4>
+      <mat-list-item>
+        <p matLine>Name: {{confirmState.firstname}}</p>
+        <p matLine>Last Name: {{confirmState.lastname}}</p>
+        <p matLine>Tel. Number: {{confirmState.telnum}}</p>
+        <p matLine>Email: {{confirmState.email}}</p>
+        <p matLine>Contact You?: {{confirmState.agree}}</p>
+        <p matLine>How?: {{confirmState.contacttype}}</p>
+        <p matLine>Feedback: {{confirmState.message}}</p>
+      </mat-list-item>
+    </div>
   </div>
 
 </div>
